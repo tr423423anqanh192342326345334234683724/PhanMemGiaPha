@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DangkyActivity"
+    android:background="#FFF9C4">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:background="@drawable/dangky"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="24dp" />
+
+        <EditText
+            android:id="@+id/tkdk"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:hint="Nhập Tên Tài Khoản Đăng Kí"
+            android:textSize="18sp"
+            android:background="@drawable/box"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/mk"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:hint="Nhập Mật Khẩu"
+            android:textSize="18sp"
+            android:background="@drawable/box"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tkdk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/xtmk"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:hint="Xác Nhận Mật Khẩu"
+            android:textSize="18sp"
+            android:background="@drawable/box"
+            android:padding="16dp"
+            android:inputType="textPassword"
+            app:layout_constraintTop_toBottomOf="@id/mk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp" />
+
+
+        <Button
+            android:id="@+id/dk"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:backgroundTint="#FF9800"
+            android:text="Đăng Ký"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/xtmk" />
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:text="Back"
+            android:textSize="18sp"
+            android:backgroundTint="#FF9800"
+            android:textColor="#FFF"
+            app:layout_constraintTop_toBottomOf="@id/dk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

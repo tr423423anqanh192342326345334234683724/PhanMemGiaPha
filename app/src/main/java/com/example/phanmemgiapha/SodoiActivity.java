@@ -1,5 +1,6 @@
 package com.example.phanmemgiapha;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.text.InputType;
@@ -12,48 +13,52 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SodoiActivity extends AppCompatActivity {
-        EditText ten,tuoi,mqh,thehe;
-        Button tt,xacnhan;
-        datagiapha datagiapha;
+    EditText ten, tuoi, mqh, thehe;
+    Button tt, xacnhan, quaylai;
+    datagiapha datagiapha;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.sodoi);
         ten = findViewById(R.id.ten);
         tuoi = findViewById(R.id.tuoi);
-        mqh = findViewById(R.id.mqh);
         thehe = findViewById(R.id.thehe);
         tt = findViewById(R.id.tieptuc);
         xacnhan = findViewById(R.id.xacnhan);
+        quaylai = findViewById(R.id.quaylai);
         datagiapha = new datagiapha(this);
+        
         tt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String tent = ten.getText().toString();
                 String tuoit = tuoi.getText().toString();
-                String mqht = mqh.getText().toString();
                 String thehet = thehe.getText().toString();
-                if(tent.isEmpty() ||tuoit.isEmpty()||mqht.isEmpty()||thehet.isEmpty() ){
-                    Toast.makeText(SodoiActivity.this,"Vui Lòng Nhập Đầy Đủ Thông Tin",Toast.LENGTH_SHORT).show();
-                    return;
+                
+               
+                if(datagiapha.themthanhvien(tent, Integer.parseInt(tuoit), Integer.parseInt(thehet))){
+                    Toast.makeText(SodoiActivity.this, "Thêm thành viên thành công", Toast.LENGTH_SHORT).show();
+                    ten.setText("");
+                    tuoi.setText("");
+                    thehe.setText("");
+                } else {
+                    Toast.makeText(SodoiActivity.this, "Thêm thành viên thất bại", Toast.LENGTH_SHORT).show();
                 }
-                int a ,b;
-                try {
-                    a = Integer.parseInt(tuoit);
-                    b = Integer.parseInt(thehet);
-
-                }catch (NumberFormatException e){
-                    Toast.makeText(SodoiActivity.this,"Vui Lòng Nhập Tuổi và Đời là Số",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                boolean themdulieu = datagiapha.themthanhvien(tent, a, mqht, b);
-                if(themdulieu){
-                    Toast.makeText(SodoiActivity.this,"Thêm Dữ Lie",Toast.LENGTH_SHORT).show();
-                    return;
-
-                }
+            }
+        });
+        xacnhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SodoiActivity.this, HienthiActivity.class));
+            }
+        });
+        
+        quaylai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

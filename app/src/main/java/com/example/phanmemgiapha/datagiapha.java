@@ -14,7 +14,7 @@ public class datagiapha extends SQLiteOpenHelper {
     private static final String cot_id = "id";
     private static final String cot_ten = "ten";
     private static final String cot_tuoi = "tuoi";
-    private static final String cot_moi_quan_he = "moi_quan_he";
+
     private static final String cot_the_he = "the_he";
     private static final String table_tk = "dangnhap";
 
@@ -31,7 +31,6 @@ public class datagiapha extends SQLiteOpenHelper {
                     cot_id + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     cot_ten + " TEXT NOT NULL, " +
                     cot_tuoi + " INTEGER, " +
-                    cot_moi_quan_he + " TEXT, " +
                     cot_the_he + " INTEGER);";
 
     public datagiapha(Context context) {
@@ -97,15 +96,14 @@ public class datagiapha extends SQLiteOpenHelper {
         return sqLiteDatabase.insert(table_tk, null, contentValues);
     }
 
-    public boolean themthanhvien(String ten, int tuoi, String mqh, int thehe) {
+    public boolean themthanhvien(String ten, int tuoi, int thehe) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("ten", ten);
         contentValues.put("tuoi", tuoi);
-        contentValues.put("mqh", mqh);
         contentValues.put("thehe", thehe);
 
-        long result = db.insert("table_giapha", null, contentValues);
+        long result = db.insert(table_giapha, null, contentValues);
         return result != -1;
     }
 }

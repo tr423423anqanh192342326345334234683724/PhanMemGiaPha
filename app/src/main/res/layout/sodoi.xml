@@ -60,38 +60,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="16dp" />
 
-        <EditText
-            android:id="@+id/mqh"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Nhập mối quan hệ với người dùng"
-            android:textSize="18sp"
-            android:background="@drawable/box"
-            android:padding="16dp"
-            app:layout_constraintTop_toBottomOf="@id/tuoi"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="16dp" />
 
         <EditText
             android:id="@+id/thehe"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Nhập thế hệ (ví dụ: 1, 2, 3...)"
-            android:textSize="18sp"
             android:background="@drawable/box"
-            android:padding="16dp"
+            android:hint="Nhập Đời Thứ:  (ví dụ: 1, 2, 3...)"
             android:inputType="number"
-            app:layout_constraintTop_toBottomOf="@id/mqh"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="24dp" />
+            android:padding="16dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/tuoi"
+            app:layout_constraintStart_toStartOf="@+id/tuoi"
+            app:layout_constraintTop_toBottomOf="@+id/tuoi" />
 
         <Button
             android:id="@+id/tieptuc"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:text="Tiếp Tục"
+            android:text="Tiếp Tục(Nếu Vẫn Muốn Thêm Người)"
             android:textSize="18sp"
             android:backgroundTint="#FF9800"
             android:textColor="#FFF"
@@ -104,7 +91,7 @@
             android:id="@+id/xacnhan"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:text="Xác Nhận"
+            android:text="Xác Nhận(Ấn Nếu Bạn Đã Nhập Đủ)"
             android:textSize="18sp"
             android:backgroundTint="#FF9800"
             android:textColor="#FFF"
@@ -112,6 +99,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/quaylai"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#FF9800"
+            android:text="Quay Lại"
+            android:textColor="#FFF"
+            app:layout_constraintEnd_toEndOf="@+id/xacnhan"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/xacnhan"
+            app:layout_constraintTop_toBottomOf="@+id/xacnhan" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

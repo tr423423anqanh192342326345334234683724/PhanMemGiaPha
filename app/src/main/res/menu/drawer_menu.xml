@@ -2,10 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_item1"
+        android:icon="@drawable/them"
         android:title="Thêm Người" />
-
+    <item
+        android:id="@+id/divider"
+        android:visible="false" />
+    <item
+    android:id="@+id/nav_item3"
+        android:title="Xóa"
+    />
     <item
         android:id="@+id/nav_item2"
+        android:icon="@drawable/dangxuat"
         android:title="Đăng Xuất" />
     <!-- Thêm các mục menu khác tại đây -->
 </menu>

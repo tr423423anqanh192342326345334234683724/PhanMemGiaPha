@@ -99,11 +99,22 @@ public class datagiapha extends SQLiteOpenHelper {
     public boolean themthanhvien(String ten, int tuoi, int thehe) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("ten", ten);
-        contentValues.put("tuoi", tuoi);
-        contentValues.put("thehe", thehe);
+        contentValues.put(cot_ten, ten);
+        contentValues.put(cot_tuoi, tuoi);
+        contentValues.put(cot_the_he, thehe);
 
         long result = db.insert(table_giapha, null, contentValues);
+        db.close();
         return result != -1;
+    }
+
+    public Cursor layTatCaThanhVien() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(table_giapha, null, null, null, null, null, cot_the_he + " ASC");
+    }
+
+    public void xoaTatCaThanhVien() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(table_giapha, null, null);
     }
 }

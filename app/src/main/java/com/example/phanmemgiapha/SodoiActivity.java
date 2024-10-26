@@ -36,13 +36,28 @@ public class SodoiActivity extends AppCompatActivity {
                 String tent = ten.getText().toString();
                 String tuoit = tuoi.getText().toString();
                 String thehet = thehe.getText().toString();
-                
+                    int tuoitt ;
+                    int thehett ;
+                if (tent.isEmpty() || tuoit.isEmpty() || thehet.isEmpty()) {
+                    Toast.makeText(SodoiActivity.this, "Vui Lòng Nhập Đầy Đủ Thông Tin", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try{
+                        tuoitt = Integer.parseInt(tuoit);
+                        thehett = Integer.parseInt(thehet);
+
+                    }catch(NumberFormatException e){
+
+                        return;
+                    }
+
                
-                if(datagiapha.themthanhvien(tent, Integer.parseInt(tuoit), Integer.parseInt(thehet))){
+                if(datagiapha.themthanhvien(tent, tuoitt, thehett)){
                     Toast.makeText(SodoiActivity.this, "Thêm thành viên thành công", Toast.LENGTH_SHORT).show();
                     ten.setText("");
                     tuoi.setText("");
                     thehe.setText("");
+                    
                 } else {
                     Toast.makeText(SodoiActivity.this, "Thêm thành viên thất bại", Toast.LENGTH_SHORT).show();
                 }
@@ -51,7 +66,8 @@ public class SodoiActivity extends AppCompatActivity {
         xacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SodoiActivity.this, HienthiActivity.class));
+                Intent intent = new Intent(SodoiActivity.this, HienthiActivity.class);
+                startActivity(intent);
             }
         });
         

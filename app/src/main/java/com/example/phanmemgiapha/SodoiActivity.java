@@ -7,7 +7,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SodoiActivity extends AppCompatActivity {
     EditText ten, tuoi, mqh, thehe;
     Button tt, xacnhan, quaylai;
+    RadioGroup radioGroupNoiNgoai;
     datagiapha datagiapha;
 
     @SuppressLint("MissingInflatedId")
@@ -25,6 +26,8 @@ public class SodoiActivity extends AppCompatActivity {
         ten = findViewById(R.id.ten);
         tuoi = findViewById(R.id.tuoi);
         thehe = findViewById(R.id.thehe);
+        mqh = findViewById(R.id.moiquanhe);
+        radioGroupNoiNgoai = findViewById(R.id.radioGroupNoiNgoai);
         tt = findViewById(R.id.tieptuc);
         xacnhan = findViewById(R.id.xacnhan);
         quaylai = findViewById(R.id.quaylai);
@@ -36,9 +39,11 @@ public class SodoiActivity extends AppCompatActivity {
                 String tent = ten.getText().toString();
                 String tuoit = tuoi.getText().toString();
                 String thehet = thehe.getText().toString();
-                    int tuoitt ;
-                    int thehett ;
-                if (tent.isEmpty() || tuoit.isEmpty() || thehet.isEmpty()) {
+                String mqht = mqh.getText().toString();
+                int noiNgoai = radioGroupNoiNgoai.getCheckedRadioButtonId();
+                int tuoitt ;
+                int thehett ;
+                if (tent.isEmpty() || tuoit.isEmpty() || thehet.isEmpty() || mqht.isEmpty() || noiNgoai == -1) {
                     Toast.makeText(SodoiActivity.this, "Vui Lòng Nhập Đầy Đủ Thông Tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -57,7 +62,7 @@ public class SodoiActivity extends AppCompatActivity {
                     ten.setText("");
                     tuoi.setText("");
                     thehe.setText("");
-                    
+                    mqh.setText("");
                 } else {
                     Toast.makeText(SodoiActivity.this, "Thêm thành viên thất bại", Toast.LENGTH_SHORT).show();
                 }

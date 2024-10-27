@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
         datagiapha = new datagiapha(this);
         chichsuat = getSharedPreferences("Login", MODE_PRIVATE);
-
-        if (kiemtra()) {
-            duongdan();
+        if(datagiapha.kiemtradangnhap(chichsuat.getString("tk", ""), chichsuat.getString("mk", ""))){
+            Intent intent = new Intent(MainActivity.this, HienthiActivity.class);
+            startActivity(intent);
             finish();
         }
 
@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (datagiapha.kiemtradangnhap(tk, mk)) {
                     luutaikhoan(tk);
-                    duongdan();
+                    Intent intent = new Intent(MainActivity.this, SodoiActivity.class);
+                    startActivity(intent);
+                    finish();
 
                 } else {
                     Toast.makeText(MainActivity.this, "Tài Khoản Mật Khẩu Không Đúng", Toast.LENGTH_SHORT).show();
@@ -84,15 +86,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private boolean kiemtra() {
-        return chichsuat.contains("nguoidung");
-    }
+    
 
-    public void duongdan() {
-        Intent intent = new Intent(MainActivity.this, SodoiActivity.class);
-        startActivity(intent);
-        finish();
-    }
+    
 
     public void luutaikhoan(String tk) {
         SharedPreferences.Editor editor = chichsuat.edit();

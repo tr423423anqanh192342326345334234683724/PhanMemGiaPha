@@ -14,8 +14,11 @@ public class datagiapha extends SQLiteOpenHelper {
     private static final String cot_id = "id";
     private static final String cot_ten = "ten";
     private static final String cot_tuoi = "tuoi";
-
+    private static final String cot_moiquanhe = "moiquanhe";
     private static final String cot_the_he = "the_he";
+
+    private static final String cot_ben = "ben";
+    
     private static final String table_tk = "dangnhap";
 
     private static final String cot_1 = "taikhoan";
@@ -31,6 +34,8 @@ public class datagiapha extends SQLiteOpenHelper {
                     cot_id + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     cot_ten + " TEXT NOT NULL, " +
                     cot_tuoi + " INTEGER, " +
+                    cot_moiquanhe + " TEXT, " +
+                    cot_ben + " TEXT, " +
                     cot_the_he + " INTEGER);";
 
     public datagiapha(Context context) {
@@ -96,12 +101,14 @@ public class datagiapha extends SQLiteOpenHelper {
         return sqLiteDatabase.insert(table_tk, null, contentValues);
     }
 
-    public boolean themthanhvien(String ten, int tuoi, int thehe) {
+    public boolean themthanhvien(String ten, int tuoi, int thehe, String mqh, String ben) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(cot_ten, ten);
         contentValues.put(cot_tuoi, tuoi);
         contentValues.put(cot_the_he, thehe);
+        contentValues.put(cot_moiquanhe, mqh);
+        contentValues.put(cot_ben, ben);
 
         long result = db.insert(table_giapha, null, contentValues);
         db.close();
@@ -115,6 +122,6 @@ public class datagiapha extends SQLiteOpenHelper {
 
     public void xoaTatCaThanhVien() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(table_giapha, null, null);
+        db.delete(table_giapha, null, null,null);
     }
 }

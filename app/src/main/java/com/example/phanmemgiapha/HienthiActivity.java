@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,8 +100,10 @@ public class HienthiActivity extends AppCompatActivity {
                 @SuppressLint("Range") String ten = cursor.getString(cursor.getColumnIndex("ten"));
                 @SuppressLint("Range") int tuoi = cursor.getInt(cursor.getColumnIndex("tuoi"));
                 @SuppressLint("Range") int theHe = cursor.getInt(cursor.getColumnIndex("the_he"));
+                @SuppressLint("Range") String mqh = cursor.getString(cursor.getColumnIndex("moi_quan_he"));
+                @SuppressLint("Range") String ben = cursor.getString(cursor.getColumnIndex("ben"));
                 
-                thanhVienList.add(new ThanhVien(id, ten, tuoi, theHe));
+                thanhVienList.add(new ThanhVien(id, ten, tuoi, theHe, mqh, ben));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -133,7 +136,15 @@ public class HienthiActivity extends AppCompatActivity {
             hangTheHe.setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             hangTheHe.setPadding(0, 50, 0, 50);
-
+            if(thanhVienTrongTheHe.get(0).getBen().equals("Nội")){
+                hangTheHe.setBackgroundColor(Color.RED);
+                hangTheHe.setGravity(Gravity.LEFT);
+                
+            }
+            else{
+                hangTheHe.setBackgroundColor(Color.GREEN);
+                hangTheHe.setGravity(Gravity.RIGHT);
+            }
             for (int i = 0; i < thanhVienTrongTheHe.size(); i++) {
                 ThanhVien tv = thanhVienTrongTheHe.get(i);
 
@@ -163,7 +174,7 @@ public class HienthiActivity extends AppCompatActivity {
             hangTheHeList.add(hangTheHe);
         }
 
-        // Thêm đường nối chéo
+
         for (int i = 0; i < hangTheHeList.size() - 1; i++) {
             LinearLayout currentRow = hangTheHeList.get(i);
             LinearLayout nextRow = hangTheHeList.get(i + 1);
@@ -201,9 +212,9 @@ public class HienthiActivity extends AppCompatActivity {
     }
 
     private void dangXuat() {
-        // Thực hiện các bước đăng xut ở đây
+        // Thực hiện các bước đăng xuất ở đây
         // Ví dụ: xóa thông tin đăng nhập, chuyển về màn hình đăng nhập
-        Toast.makeText(this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
+        showCustomToast("Đã đăng xuất");
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -215,6 +226,20 @@ public class HienthiActivity extends AppCompatActivity {
         datagiapha.xoaTatCaThanhVien();
         thanhVienList.clear();
         hienThiGiaPha(); // Cập nhật lại giao diện
-        Toast.makeText(this, "Đã xóa hết dữ liệu", Toast.LENGTH_SHORT).show();
+        showCustomToast("Đã xóa hết dữ liệu");
+    }
+
+    private void showCustomToast(String message) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast, null);
+
+        TextView text = layout.findViewById(R.id.custom_toast_text);
+        text.setText(message);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 50);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 }

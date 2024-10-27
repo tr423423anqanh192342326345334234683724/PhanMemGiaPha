@@ -18,7 +18,7 @@ public class LineView extends View {
     private void init() {
         paint = new Paint();
         paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(2f);
+        paint.setStrokeWidth(5f);
     }
 
     public void setLine(float startX, float startY, float endX, float endY) {
